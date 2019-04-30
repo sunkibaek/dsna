@@ -3,6 +3,7 @@ Read file into texts and calls.
 It's ok if you don't understand how to read files.
 """
 import csv
+import re
 
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
@@ -43,3 +44,46 @@ Print the answer as a part of a message::
 to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
+
+def is_bangalore_fixed_line(phone_number):
+  matchObj = re.match(r'^(\(080\))(.*)', phone_number)
+
+  if matchObj == "(080)":
+    print("matchObj.group() : ", matchObj.group())
+    return True
+
+  return False
+
+def get_prefix(phone_number):
+  matchObj = re.match(r'^((140)|([789]\d{4} )|(\(0\d*\)))(\d*)$', phone_number)
+
+  return matchObj.group(1) if matchObj else phone_number
+
+# loop through calls
+def main():
+  area_codes = {}
+
+  for item in calls:
+    calling_number, receiving_number, _, __ = item;
+
+    if not is_bangalore_fixed_line(calling_number):
+      next
+
+    area_codes[get_prefix(receiving_number)] = True
+
+  print('The numbers called by people in Bangalore have codes:')
+  print("\n".join(sorted(area_codes.keys())))
+
+  print('<percentage> percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.')
+
+# calling number, receiving number, time, duration
+# for calling numbers and receiving numbers
+# see if the number has fixed line area code
+# see if the number has mobile numbers
+# see if the number has 140
+# if calling the number has 080 count how many receiving calls are 080 and
+# how many are other types
+# save them as unique values in list
+# print the output messages
+
+main()
