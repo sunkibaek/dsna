@@ -29,7 +29,6 @@ def main():
     calling_numbers = {}
     telephone_marketing_numbers = []
 
-    # loop through call list
     for item in calls:
         calling_number, _, __, ___ = item;
         calling_numbers[calling_number] = True
@@ -54,13 +53,5 @@ def main():
 
     print("These numbers could be telemarketers: ")
     print("\n".join(sorted(telephone_marketing_numbers)))
-
-    # save calling numbers to true
-    # set it false if
-    # 1. it sends text
-    # 2. it receives text
-    # 3. it receives call
-    # filter the result for true
-    # print out the result
 
 main()
