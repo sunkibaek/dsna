@@ -48,8 +48,7 @@ The percentage should have 2 decimal digits
 def is_bangalore_fixed_line(phone_number):
   matchObj = re.match(r'^(\(080\))(.*)', phone_number)
 
-  if matchObj == "(080)":
-    print("matchObj.group() : ", matchObj.group())
+  if matchObj and matchObj.group(1) == "(080)":
     return True
 
   return False
@@ -59,22 +58,33 @@ def get_prefix(phone_number):
 
   return matchObj.group(1) if matchObj else phone_number
 
+def get_percent(to_number, from_number):
+  return round((to_number / from_number) * 100, 2)
+
 # loop through calls
 def main():
   area_codes = {}
+  from_fixed_lines_in_bagalore_count = 0
+  to_fixed_lines_in_bangalore_count = 0
 
   for item in calls:
     calling_number, receiving_number, _, __ = item;
 
     if not is_bangalore_fixed_line(calling_number):
-      next
+      continue
 
     area_codes[get_prefix(receiving_number)] = True
+    from_fixed_lines_in_bagalore_count += 1
+
+    if is_bangalore_fixed_line(receiving_number):
+      to_fixed_lines_in_bangalore_count += 1
+
+  from_to_bangalore_fixed_lines_percent = get_percent(to_fixed_lines_in_bangalore_count, from_fixed_lines_in_bagalore_count)
 
   print('The numbers called by people in Bangalore have codes:')
   print("\n".join(sorted(area_codes.keys())))
 
-  print('<percentage> percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.')
+  print(f'{from_to_bangalore_fixed_lines_percent} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.')
 
 # calling number, receiving number, time, duration
 # for calling numbers and receiving numbers
