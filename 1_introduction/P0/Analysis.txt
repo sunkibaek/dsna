@@ -6,6 +6,8 @@ Task0:
   - O(1) to access a single record from files
 
 Task1:
+  - O(n) to loop through two lists
+
 Task2:
 Task3:
 Task3:

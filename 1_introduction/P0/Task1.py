@@ -19,14 +19,17 @@ Print a message:
 "There are <count> different telephone numbers in the records."
 """
 
-numbers = {}
+def main():
+    numbers = {}
 
-for item in texts:
-    numbers[item[0]] = True
-    numbers[item[1]] = True
+    for item in texts:
+        numbers[item[0]] = True
+        numbers[item[1]] = True
 
-for item in calls:
-    numbers[item[0]] = True
-    numbers[item[1]] = True
+    for item in calls:
+        numbers[item[0]] = True
+        numbers[item[1]] = True
 
-print(f'There are {len(numbers)} different telephone numbers in the records.')
+    print(f'There are {len(numbers)} different telephone numbers in the records.')
+
+main()
