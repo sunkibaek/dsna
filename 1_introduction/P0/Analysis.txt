@@ -1,0 +1,11 @@
+Once you have completed your solution for each problem,
+perform a run time analysis (Worst Case Big-O Notation) of your solution.
+Document this for each problem and include this in your submission.
+
+Task0:
+  - O(1) to access a single record from files
+
+Task1:
+Task2:
+Task3:
+Task3:
