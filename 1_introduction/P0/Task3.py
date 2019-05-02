@@ -61,7 +61,6 @@ def get_prefix(phone_number):
 def get_percent(to_number, from_number):
   return round((to_number / from_number) * 100, 2)
 
-# loop through calls
 def main():
   area_codes = {}
   from_fixed_lines_in_bagalore_count = 0
@@ -85,15 +84,5 @@ def main():
   print("\n".join(sorted(area_codes.keys())))
 
   print(f'{from_to_bangalore_fixed_lines_percent} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.')
-
-# calling number, receiving number, time, duration
-# for calling numbers and receiving numbers
-# see if the number has fixed line area code
-# see if the number has mobile numbers
-# see if the number has 140
-# if calling the number has 080 count how many receiving calls are 080 and
-# how many are other types
-# save them as unique values in list
-# print the output messages
 
 main()

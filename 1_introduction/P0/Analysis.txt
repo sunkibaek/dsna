@@ -12,4 +12,6 @@ Task2:
   - O(n) to loop through a list
 
 Task3:
+  - O(n) to loop through a list
+
 Task3:
