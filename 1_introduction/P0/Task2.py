@@ -20,24 +20,27 @@ Print a message:
 September 2016.".
 """
 
-durations = {}
-longest = 0
-longest_number = ""
+def main():
+    durations = {}
+    longest = 0
+    longest_number = ""
 
-for item in calls:
-    (calling_number, receiving_number, at_time, duration) = item
+    for item in calls:
+        (calling_number, receiving_number, at_time, duration) = item
 
-    duration = int(duration)
+        duration = int(duration)
 
-    durations[calling_number] = durations.get(calling_number, 0) + duration
-    durations[receiving_number] = durations.get(receiving_number, 0) + duration
+        durations[calling_number] = durations.get(calling_number, 0) + duration
+        durations[receiving_number] = durations.get(receiving_number, 0) + duration
 
-    if durations[calling_number] > longest:
-        longest = durations[calling_number]
-        longest_number = calling_number
+        if durations[calling_number] > longest:
+            longest = durations[calling_number]
+            longest_number = calling_number
 
-    if durations[receiving_number] > longest:
-        longest = durations[receiving_number]
-        longest_number = receiving_number
+        if durations[receiving_number] > longest:
+            longest = durations[receiving_number]
+            longest_number = receiving_number
 
-print(f'{longest_number} spent the longest time, {longest} seconds, on the phone during September 2016.')
+    print(f'{longest_number} spent the longest time, {longest} seconds, on the phone during September 2016.')
+
+main()
