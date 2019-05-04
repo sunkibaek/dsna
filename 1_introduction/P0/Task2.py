@@ -3,6 +3,8 @@ Read file into texts and calls.
 It's ok if you don't understand how to read files
 """
 import csv
+from collections import defaultdict
+
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
     texts = list(reader)
@@ -21,7 +23,7 @@ September 2016.".
 """
 
 def main():
-    durations = {}
+    durations = defaultdict(int)
     longest = 0
     longest_number = ""
 
@@ -30,8 +32,8 @@ def main():
 
         duration = int(duration)
 
-        durations[calling_number] = durations.get(calling_number, 0) + duration
-        durations[receiving_number] = durations.get(receiving_number, 0) + duration
+        durations[calling_number] += duration
+        durations[receiving_number] += duration
 
         if durations[calling_number] > longest:
             longest = durations[calling_number]
