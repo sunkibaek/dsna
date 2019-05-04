@@ -22,7 +22,7 @@ Print messages:
 
 def main():
     first_text = texts[0]
-    last_call = calls[len(calls) - 1]
+    last_call = calls[-1]
 
     print(f'First record of texts, {first_text[0]} texts {first_text[1]} at time {first_text[1]}')
     print(f'Last record of calls, {last_call[0]} calls {last_call[1]} at time {last_call[2]}, lasting {last_call[3]} seconds')
