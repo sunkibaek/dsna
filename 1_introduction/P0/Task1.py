@@ -20,15 +20,15 @@ Print a message:
 """
 
 def main():
-    numbers = {}
+    numbers = set()
 
     for item in texts:
-        numbers[item[0]] = True
-        numbers[item[1]] = True
+        numbers.add(item[0])
+        numbers.add(item[1])
 
     for item in calls:
-        numbers[item[0]] = True
-        numbers[item[1]] = True
+        numbers.add(item[0])
+        numbers.add(item[1])
 
     print(f'There are {len(numbers)} different telephone numbers in the records.')
 
