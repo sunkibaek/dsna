@@ -26,32 +26,25 @@ The list of numbers should be print out one per line in lexicographic order with
 """
 
 def main():
-    calling_numbers = {}
-    telephone_marketing_numbers = []
+    calling_numbers = set()
 
     for item in calls:
         calling_number, _, __, ___ = item;
-        calling_numbers[calling_number] = True
+
+        calling_numbers.add(calling_number)
 
     for item in calls:
         _, receiving_number, __, ___ = item;
-        if calling_numbers.get(receiving_number):
-            calling_numbers[receiving_number] = False
+
+        calling_numbers.discard(receiving_number)
 
     for item in texts:
         texting_number, receiving_number, __ = item;
 
-        if calling_numbers.get(texting_number):
-            calling_numbers[texting_number] = False
-
-        if calling_numbers.get(receiving_number):
-            calling_numbers[receiving_number] = False
-
-    for key, value in calling_numbers.items():
-        if calling_numbers.get(key):
-            telephone_marketing_numbers.append(key)
+        calling_numbers.discard(texting_number)
+        calling_numbers.discard(receiving_number)
 
     print("These numbers could be telemarketers: ")
-    print("\n".join(sorted(telephone_marketing_numbers)))
+    print("\n".join(sorted(calling_numbers)))
 
 main()
