@@ -62,7 +62,7 @@ def get_percent(to_number, from_number):
   return round((to_number / from_number) * 100, 2)
 
 def main():
-  area_codes = {}
+  area_codes = set()
   from_fixed_lines_in_bagalore_count = 0
   to_fixed_lines_in_bangalore_count = 0
 
@@ -72,7 +72,7 @@ def main():
     if not is_bangalore_fixed_line(calling_number):
       continue
 
-    area_codes[get_prefix(receiving_number)] = True
+    area_codes.add(get_prefix(receiving_number))
     from_fixed_lines_in_bagalore_count += 1
 
     if is_bangalore_fixed_line(receiving_number):
@@ -81,7 +81,7 @@ def main():
   from_to_bangalore_fixed_lines_percent = get_percent(to_fixed_lines_in_bangalore_count, from_fixed_lines_in_bagalore_count)
 
   print('The numbers called by people in Bangalore have codes:')
-  print("\n".join(sorted(area_codes.keys())))
+  print("\n".join(sorted(area_codes)))
 
   print(f'{from_to_bangalore_fixed_lines_percent} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.')
 
