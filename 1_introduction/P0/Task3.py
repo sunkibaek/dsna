@@ -46,17 +46,47 @@ The percentage should have 2 decimal digits
 """
 
 def is_bangalore_fixed_line(phone_number):
-  matchObj = re.match(r'^(\(080\))(.*)', phone_number)
+  return phone_number.startswith('(080)')
 
-  if matchObj and matchObj.group(1) == "(080)":
-    return True
+def is_fixed_line(phone_number):
+  return phone_number.startswith('(0')
 
-  return False
+def is_mobile_number(phone_number):
+  return (
+    phone_number.startswith('7') or
+    phone_number.startswith('8') or
+    phone_number.startswith('9')
+  ) and phone_number.startswith(' ', 5)
+
+def is_telemarketer_number(phone_number):
+  return phone_number.startswith('140')
+
+def get_fixed_line_prefix(phone_number):
+  prefix = ''
+
+  for c in phone_number:
+    if c == '(':
+      continue
+    if c == ')':
+      return prefix
+    prefix += c
+
+  return prefix
+
+def get_mobile_number_prefix(phone_number):
+  return phone_number[0:4]
 
 def get_prefix(phone_number):
-  matchObj = re.match(r'^((140)|([789]\d{4} )|(\(0\d*\)))(\d*)$', phone_number)
+  if is_fixed_line(phone_number):
+    return get_fixed_line_prefix(phone_number)
 
-  return matchObj.group(1) if matchObj else phone_number
+  if is_mobile_number(phone_number):
+    return get_mobile_number_prefix(phone_number)
+
+  if is_telemarketer_number(phone_number):
+    return '140'
+
+  raise Exception('Unrecognized prefix for phone number: ', phone_number)
 
 def get_percent(to_number, from_number):
   return round((to_number / from_number) * 100, 2)
