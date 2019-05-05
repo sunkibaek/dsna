@@ -97,7 +97,7 @@ def main():
   to_fixed_lines_in_bangalore_count = 0
 
   for item in calls:
-    calling_number, receiving_number, _, __ = item;
+    calling_number, receiving_number, _, __ = item
 
     if not is_bangalore_fixed_line(calling_number):
       continue

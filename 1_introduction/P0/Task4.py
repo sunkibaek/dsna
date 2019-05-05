@@ -29,17 +29,17 @@ def main():
     calling_numbers = set()
 
     for item in calls:
-        calling_number, _, __, ___ = item;
+        calling_number, _, __, ___ = item
 
         calling_numbers.add(calling_number)
 
     for item in calls:
-        _, receiving_number, __, ___ = item;
+        _, receiving_number, __, ___ = item
 
         calling_numbers.discard(receiving_number)
 
     for item in texts:
-        texting_number, receiving_number, __ = item;
+        texting_number, receiving_number, __ = item
 
         calling_numbers.discard(texting_number)
         calling_numbers.discard(receiving_number)
