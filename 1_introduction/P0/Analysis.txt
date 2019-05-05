@@ -9,6 +9,8 @@ Task2:
 
 Task3:
   - O(n) to loop through a list
+  - Also additional O(n log n) to sort the end result
 
 Task4:
   - O(n) to loop through four lists
+  - Also additional O(n log n) to sort the end result
