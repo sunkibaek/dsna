@@ -21,13 +21,6 @@ class Group(object):
 
 
 def is_user_in_group(user, group):
-    """
-    Return True if user is in the group, False otherwise.
-
-    Args:
-      user(str): user name/id
-      group(class:Group): group to check user membership against
-    """
     if user in group.users:
         return True
 
@@ -38,7 +31,8 @@ def is_user_in_group(user, group):
     return False
 
 
-def main():
+def test1():
+    print("Testing for sub child user")
     parent = Group("parent")
     child = Group("child")
     sub_child = Group("subchild")
@@ -49,7 +43,42 @@ def main():
     child.add_group(sub_child)
     parent.add_group(child)
 
-    print(is_user_in_group(sub_child_user, parent))
+    print(is_user_in_group(sub_child_user, parent) == True)
+    # True
 
 
-main()
+def test2():
+    print("Testing for sub sub child user")
+    parent = Group("parent")
+    child = Group("child")
+    sub_child = Group("subchild")
+    sub_sub_child = Group("subsubchild")
+
+    sub_sub_child_user = "sub_child_user"
+    sub_sub_child.add_user(sub_sub_child_user)
+
+    sub_child.add_group(sub_sub_child)
+    child.add_group(sub_child)
+    parent.add_group(child)
+
+    print(is_user_in_group(sub_sub_child_user, parent) == True)
+    # True
+
+
+def test3():
+    print("Testing for child user")
+    parent = Group("parent")
+    child = Group("child")
+
+    child_user = "child_user"
+    child.add_user(child_user)
+
+    parent.add_group(child)
+
+    print(is_user_in_group(child_user, parent) == True)
+    # True
+
+
+test1()
+test2()
+test3()
