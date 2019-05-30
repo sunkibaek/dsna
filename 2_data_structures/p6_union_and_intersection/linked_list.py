@@ -85,36 +85,66 @@ def intersection(llist_1, llist_2):
     return intersection_llist
 
 
-# Test case 1
+def test1():
+    linked_list_1 = LinkedList()
+    linked_list_2 = LinkedList()
 
-linked_list_1 = LinkedList()
-linked_list_2 = LinkedList()
+    element_1 = [3, 2, 4, 35, 6, 65, 6, 4, 3, 21]
+    element_2 = [6, 32, 4, 9, 6, 1, 11, 21, 1]
 
-element_1 = [3, 2, 4, 35, 6, 65, 6, 4, 3, 21]
-element_2 = [6, 32, 4, 9, 6, 1, 11, 21, 1]
+    for i in element_1:
+        linked_list_1.append(i)
 
-for i in element_1:
-    linked_list_1.append(i)
+    for i in element_2:
+        linked_list_2.append(i)
 
-for i in element_2:
-    linked_list_2.append(i)
+    print("==========")
+    print(union(linked_list_1, linked_list_2))
+    # 32 -> 65 -> 2 -> 35 -> 4 -> 6 -> 1 -> 9 -> 11 -> 3 -> 21 ->
+    print(intersection(linked_list_1, linked_list_2))
+    # 6 -> 4 -> 21 ->
 
-print(union(linked_list_1, linked_list_2))
-print(intersection(linked_list_1, linked_list_2))
 
-# Test case 2
+def test2():
+    linked_list_1 = LinkedList()
+    linked_list_2 = LinkedList()
 
-linked_list_3 = LinkedList()
-linked_list_4 = LinkedList()
+    element_1 = [3, 2, 4, 35, 6, 65, 6, 4, 3, 23]
+    element_2 = [1, 7, 8, 9, 11, 21, 1]
 
-element_1 = [3, 2, 4, 35, 6, 65, 6, 4, 3, 23]
-element_2 = [1, 7, 8, 9, 11, 21, 1]
+    for i in element_1:
+        linked_list_1.append(i)
 
-for i in element_1:
-    linked_list_3.append(i)
+    for i in element_2:
+        linked_list_2.append(i)
 
-for i in element_2:
-    linked_list_4.append(i)
+    print("==========")
+    print(union(linked_list_1, linked_list_2))
+    # 65 -> 2 -> 35 -> 4 -> 6 -> 1 -> 8 -> 9 -> 7 -> 11 -> 3 -> 21 -> 23 ->
+    print(intersection(linked_list_1, linked_list_2))
+    # (empty)
 
-print(union(linked_list_3, linked_list_4))
-print(intersection(linked_list_3, linked_list_4))
+
+def test3():
+    linked_list_1 = LinkedList()
+    linked_list_2 = LinkedList()
+
+    element_1 = [3, 2, 4]
+    element_2 = []
+
+    for i in element_1:
+        linked_list_1.append(i)
+
+    for i in element_2:
+        linked_list_2.append(i)
+
+    print("==========")
+    print(union(linked_list_1, linked_list_2))
+    # 2 -> 3 -> 4 ->
+    print(intersection(linked_list_1, linked_list_2))
+    # (empty)
+
+
+test1()
+test2()
+test3()
