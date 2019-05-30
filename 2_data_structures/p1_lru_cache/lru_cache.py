@@ -1,9 +1,12 @@
+import collections
+
+
 class LRU_Cache(object):
 
     def __init__(self, capacity):
         self.cache = {}
         self.capacity = capacity
-        self.cache_keys = [None for _ in range(capacity)]
+        self.cache_keys = collections.deque()
 
     def get(self, key):
         if self.cache.get(key) != None:
@@ -20,11 +23,11 @@ class LRU_Cache(object):
 
         if self.cache.get(key) == None:
             self.cache[key] = value
-            self.cache_keys.insert(0, key)
+            self.cache_keys.appendleft(key)
 
     def move_cache_key_to_front(self, key):
-        self.cache_keys.insert(
-            0, self.cache_keys.pop(self.cache_keys.index(key)))
+        self.cache_keys.remove(key)
+        self.cache_keys.appendleft(key)
 
 
 def test(case, received, expected):
