@@ -10,21 +10,19 @@ class Node(object):
 
 
 def build_one_group(nodes):
-    new_nodes = nodes[:]
+    if len(nodes) <= 1:
+        return nodes
 
-    if len(new_nodes) <= 1:
-        return new_nodes
-
-    right = new_nodes.pop()
-    left = new_nodes.pop()
+    right = nodes.pop()
+    left = nodes.pop()
 
     parent = Node(left.freq + right.freq, None)
     parent.left = left
     parent.right = right
 
-    new_nodes.append(parent)
+    nodes.append(parent)
 
-    return sorted(new_nodes, key=lambda node: -node.freq)
+    return sorted(nodes, key=lambda node: -node.freq)
 
 
 def char_to_bin(char, node, binString):
@@ -107,23 +105,27 @@ def huffman_decoding(data, tree):
     return bin_to_string(data, tree, tree, "")
 
 
-if __name__ == "__main__":
-    codes = {}
+def test(test_sentence):
+    print("The size of the data is: {}".format(
+        sys.getsizeof(test_sentence)))
+    print("The content of the data is: {}\n".format(test_sentence))
 
-    a_great_sentence = "The bird is the word"
+    encoded_data, tree = huffman_encoding(test_sentence)
 
-    print("The size of the data is: {}\n".format(
-        sys.getsizeof(a_great_sentence)))
-    print("The content of the data is: {}\n".format(a_great_sentence))
-
-    encoded_data, tree = huffman_encoding(a_great_sentence)
-
-    print("The size of the encoded data is: {}\n".format(
+    print("The size of the encoded data is: {}".format(
         sys.getsizeof(int(encoded_data, base=2))))
     print("The content of the encoded data is: {}\n".format(encoded_data))
 
     decoded_data = huffman_decoding(encoded_data, tree)
 
-    print("The size of the decoded data is: {}\n".format(
+    print("The size of the decoded data is: {}".format(
         sys.getsizeof(decoded_data)))
     print("The content of the decoded data is: {}\n".format(decoded_data))
+
+
+test("The bird is the word")
+# 57
+test("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+# 160
+test("ab")
+# 39
