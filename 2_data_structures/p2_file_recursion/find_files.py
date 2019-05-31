@@ -23,5 +23,8 @@ print(find_files(".c", "./testdir"))
 print(find_files(".h", "./testdir"))
 # ['./testdir/subdir3/subsubdir1/b.h', './testdir/subdir5/a.h', './testdir/t1.h', './testdir/subdir1/a.h']
 
+print(find_files(".test", "./testdir"))
+# []
+
 print(find_files(".py", "./"))
 # ['./find_files.py']

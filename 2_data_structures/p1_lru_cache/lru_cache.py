@@ -100,6 +100,16 @@ def test_case_3():
     # For 2, cache miss pass
 
 
+def test_case_4():
+    print("====================")
+    print("For empty cache")
+    our_cache = LRU_Cache(0)
+
+    test("For 1, cache miss", our_cache.get(1), -1)
+    # For 1, cache miss pass
+
+
 test_case_1()
 test_case_2()
 test_case_3()
+test_case_4()
