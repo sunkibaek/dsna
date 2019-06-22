@@ -1,3 +1,28 @@
+def binary_search(input_list, number, index_offset):
+    start_index = 0
+    end_index = len(input_list) - 1
+    mid_index = (start_index + end_index) // 2
+
+    while True:
+        if number == input_list[mid_index]:
+            return mid_index + index_offset
+
+        if mid_index == 0 or mid_index == len(input_list) - 1:
+            break
+
+        if number > input_list[mid_index]:
+            mid_index = (end_index + mid_index + 1) // 2
+            continue
+
+        if number < input_list[mid_index]:
+            mid_index = (start_index + mid_index) // 2
+            continue
+
+        break
+
+    return -1
+
+
 def rotated_array_search(input_list, number):
     """
     Find the index by searching in a rotated sorted array
@@ -7,43 +32,25 @@ def rotated_array_search(input_list, number):
     Returns:
        int: Index or -1
     """
-    lower_index = 0
-    upper_index = len(input_list) - 1
-    mid_index = (lower_index + upper_index) / 2
-    start_index = lower_index
-    end_index = upper_index
+    start_index = 0
+    end_index = len(input_list) - 1
+    rotate_index = 0
 
-    if input_list[lower_index] == number:
-        return lower_index
-    if input_list[mid_index] == number:
-        return mid_index
-    if input_list[upper_index] == number:
-        return upper_index
+    # find rotated index: O(n)
+    for index, element in enumerate(input_list):
+        if index > 0 and input_list[index] < input_list[index - 1]:
+            rotate_index = index
+            break
 
-    if input_list[lower_index] < number and input_list[mid_index] > number:
-        start_index = lower_index
-        end_index = mid_index
-    elif input_list[mid_index] < number and input_list[upper_index] > number:
-        start_index = mid_index
-        end_index = upper_index
-    elif input_list[upper_index] > number and input_list[mid_index] > number:
-        start_index = mid_index
-        end_index = upper_index
+    # compare what section the number belongs: O(1)
+    # set boundaries
+    if number >= input_list[0] and number <= input_list[rotate_index - 1]:
+        end_index = rotate_index - 1
+    elif number >= input_list[rotate_index] and number <= input_list[len(input_list) - 1]:
+        start_index = rotate_index
 
-    search_index = (start_index + end_index) / 2
-    count = 0
-
-    while not input_list[search_index] == number:
-        count += 1
-
-        if input_list[search_index] < number:
-            search_index = (search_index + end_index) / 2
-        else:
-            search_index = (search_index + start_index) / 2
-
-    print(count)
-
-    return search_index
+    # binary search within boundaries: O(log n)
+    return binary_search(input_list[start_index:(end_index + 1)], number, start_index)
 
 
 def linear_search(input_list, number):
