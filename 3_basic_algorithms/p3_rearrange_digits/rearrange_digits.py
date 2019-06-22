@@ -7,7 +7,6 @@ def rearrange_digits(input_list):
     Returns:
        (int),(int): Two maximum sums
     """
-    pass
 
 
 def test_function(test_case):

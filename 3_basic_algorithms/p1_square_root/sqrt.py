@@ -26,7 +26,7 @@ def sqrt(number):
         if upper_bound - lower_bound == 1:
             return lower_bound
 
-        half = candidate / 2
+        half = candidate // 2
 
         if half ** 2 > number:
             upper_bound = half
@@ -42,10 +42,15 @@ def sqrt(number):
             return half
 
 
-print("Pass" if (3 == sqrt(9)) else "Fail")
-print("Pass" if (0 == sqrt(0)) else "Fail")
-print("Pass" if (4 == sqrt(16)) else "Fail")
-print("Pass" if (1 == sqrt(1)) else "Fail")
-print("Pass" if (5 == sqrt(27)) else "Fail")
+def test(result, expect):
+    if result == expect:
+        print("Pass")
+    else:
+        print("Fail", result, expect)
 
-print("Pass" if (1 == sqrt(2)) else "Fail")
+
+test(sqrt(9), 3)
+test(sqrt(0), 0)
+test(sqrt(16), 4)
+test(sqrt(1), 1)
+test(sqrt(27), 5)
