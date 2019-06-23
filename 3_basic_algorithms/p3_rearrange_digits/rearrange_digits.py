@@ -8,16 +8,16 @@ def rearrange_digits(input_list):
        (int),(int): Two maximum sums
     """
     sorted_list = sorted(input_list, reverse=True)
-    odd = []
-    even = []
+    first = ""
+    second = ""
 
     for index, element in enumerate(sorted_list):
         if index % 2:
-            even.append(str(element))
+            second += str(element)
         else:
-            odd.append(str(element))
+            first += str(element)
 
-    return [int("".join(odd)), int("".join(even))]
+    return [int(first), int(second)]
 
 
 def test_function(test_case):
