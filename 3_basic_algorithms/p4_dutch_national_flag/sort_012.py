@@ -5,27 +5,30 @@ def sort_012(input_list):
     Args:
        input_list(list): List to be sorted
     """
-    sorted = [None for _ in range(len(input_list))]
+    sorted_list = [None for _ in range(len(input_list))]
     counts = {
         0: 0,
         1: 0,
         2: 0
     }
-    last_index = len(input_list) - 1
 
-    for i in input_list:
-        if i == 0:
-            sorted[counts[0]] = 0
+    for index, element in enumerate(input_list):
+        if element == 0:
+            if sorted_list[counts[0]] == 1:
+                sorted_list[counts[0]] = 0
+                sorted_list[counts[0] + counts[1]] = 1
+            else:
+                sorted_list[counts[0]] = 0
 
-        # if i == 1:
-        #   sorted[counts[1]] = 1
+        if element == 1:
+            sorted_list[counts[0] + counts[1]] = 1
 
-        if i == 2:
-            sorted[last_index - counts[2]] = 2
+        if element == 2:
+            sorted_list[len(input_list) - 1 - counts[2]] = 2
 
-        counts[i] += 1
+        counts[element] += 1
 
-    return sorted
+    return sorted_list
 
 
 def test_function(test_case):
