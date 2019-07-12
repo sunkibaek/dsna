@@ -1,11 +1,3 @@
-"""
-If the given number is 27, the answer would be 5 because sqrt(5) = 5.196 whose
-floor value is 5.
-
-The expected time complexity is O(log(n))
-"""
-
-
 def sqrt(number):
     """
     Calculate the floored square root of a number
@@ -43,14 +35,31 @@ def sqrt(number):
 
 
 def test(result, expect):
+    """
+    print Pass for success, Fail with result and expect for failure
+    """
     if result == expect:
         print("Pass")
     else:
         print("Fail", result, expect)
 
 
+# regular case
+# 9 -> 3
 test(sqrt(9), 3)
-test(sqrt(0), 0)
+
+# regular case
+# 16 -> 4
 test(sqrt(16), 4)
-test(sqrt(1), 1)
+
+# does it floor?
+# 27 -> 5
 test(sqrt(27), 5)
+
+# edge case
+# 0 -> 0
+test(sqrt(0), 0)
+
+# edge case
+# 1 -> 1
+test(sqrt(1), 1)
