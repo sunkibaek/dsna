@@ -69,8 +69,17 @@ def test_function(test_case):
         print("Fail")
 
 
+# search an element of the first section
 test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 6])
+
+# search an element of the second section
 test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 1])
-test_function([[6, 7, 8, 1, 2, 3, 4], 8])
-test_function([[6, 7, 8, 1, 2, 3, 4], 1])
+
+# search an element that does not exist
 test_function([[6, 7, 8, 1, 2, 3, 4], 10])
+
+# search an element from minimum set
+test_function([[6, 1], 6])
+
+# search an element from minimum set
+test_function([[6, 1], 1])
