@@ -7,10 +7,13 @@ def rearrange_digits(input_list):
     Returns:
        (int),(int): Two maximum sums
     """
+    # sort the list in O(n log n)
     sorted_list = sorted(input_list, reverse=True)
     first = ""
     second = ""
 
+    # assign an element to first or second section alternatively
+    # O(n)
     for index, element in enumerate(sorted_list):
         if index % 2:
             second += str(element)
@@ -26,8 +29,17 @@ def test_function(test_case):
     if sum(output) == sum(solution):
         print("Pass")
     else:
-        print("Fail")
+        print("Fail", output, solution)
 
 
+# regular case
 test_function([[1, 2, 3, 4, 5], [542, 31]])
+
+# regular case
 test_function([[4, 6, 2, 5, 9, 8], [964, 852]])
+
+# regular case
+test_function([[1, 2, 3, 4, 5, 6, 7, 8, 9], [97531, 8642]])
+
+# test for minimum input
+test_function([[1, 2], [1, 2]])
