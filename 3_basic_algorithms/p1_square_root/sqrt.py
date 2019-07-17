@@ -11,6 +11,9 @@ def sqrt(number):
     lower_bound = 1
     candidate = upper_bound
 
+    if number < 0:
+        return None
+
     if number ** 2 == number:
         return number
 
@@ -63,3 +66,7 @@ test(sqrt(0), 0)
 # edge case
 # 1 -> 1
 test(sqrt(1), 1)
+
+# negative numbers
+# -4 -> None
+test(sqrt(-4), None)
