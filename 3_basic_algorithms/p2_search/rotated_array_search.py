@@ -36,6 +36,9 @@ def rotated_array_search(input_list, number):
     end_index = len(input_list) - 1
     rotate_index = 0
 
+    if len(input_list) == 0:
+        return -1
+
     # find rotated index: O(n)
     for index, element in enumerate(input_list):
         if index > 0 and input_list[index] < input_list[index - 1]:
@@ -83,3 +86,9 @@ test_function([[6, 1], 6])
 
 # search an element from minimum set
 test_function([[6, 1], 1])
+
+# without rotation
+test_function([[1, 6], -1])
+
+# empty array
+test_function([[], -1])
